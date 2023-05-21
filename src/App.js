@@ -2,30 +2,35 @@ import React, { useState, useEffect, useRef} from 'react'
 
 export default function App() {
     var form = useRef()
+    var item_l = useRef()
+    var done = useRef()
+    var deleteItem = useRef()
+
     const [todoList, setTodoList] = useState([]);
     const [wholeList, setWholeList] = useState([]);
-    // var add_todo = useRef()
-    // console.log(add_todo.current)
-
-    // useEffect(() => {
-    //     add_todo.current.addEventListener("click", () => {
-    //         console.log('123')
-    //         // form.current.submit()
-    //         // console.log(form.current)
-    //     })
-    // }, []);
 
     function add_todo() {
-        if(todoList.length <= 0) {
-            setTodoList([form.current.value])
+        var nItem = form.current.value
+        if(nItem.length <= 2) {
+            item_l.current.classList.add("show")
         } else {
-            setTodoList(prevList => {
-                return [...prevList, form.current.value]
-            })
+            item_l.current.classList.remove("show")
+            if(todoList.length <= 0) {
+                setTodoList([nItem])
+            } else {
+                setTodoList(prevList => {
+                    return [...prevList, nItem]
+                })
+            }
+            form.current.value = "";
         }
     }
 
-
+    function delete_item(num) {
+        setTodoList(prevList => prevList.filter((item) => {
+            return item !== todoList[num];
+        }))
+    }
 
     return (
         <div>
@@ -39,10 +44,15 @@ export default function App() {
                     <img src="../images/not-done.png"/>
                 </div>
             </div>
+            <h1 className='item-l' ref={item_l}>Item length must be longer than 2.</h1>
             <div>
                 <ul className='m-list'>
                 {todoList.map((name, index) => {
-                    return <li key={index}>{name}</li>
+                    return <div key={index} className='item-div'>
+                                <li>{index + 1}. {name}</li>
+                                <img ref={done} src="images/check.png"/>
+                                <img src="images/delete.jpg" onClick={() => delete_item(index)}/>
+                            </div>
                 })}
                 </ul>
             </div>
