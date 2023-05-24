@@ -83,13 +83,13 @@ export default function App() {
                             return  <div key={index} className='item-div'>
                                         <li>{index + 1}. <s>{name}</s></li>
                                         <img src="images/check.png" onClick={() => cross_item(index)}/>
-                                        <img src="images/delete.jpg" onClick={() => delete_item(index)}/>
+                                        <img src="images/delete.png" onClick={() => delete_item(index)}/>
                                     </div>
                         } else {
                             return <div key={index} className='item-div'>
                                         <li>{index + 1}. {name}</li>
                                         <img src="images/check.png" onClick={() => cross_item(index)}/>
-                                        <img src="images/delete.jpg" onClick={() => delete_item(index)}/>
+                                        <img src="images/delete.png" onClick={() => delete_item(index)}/>
                                     </div>
                             }
                     } else if(showDone) {
@@ -97,7 +97,7 @@ export default function App() {
                             return  <div key={index} className='item-div'>
                                         <li>{index + 1}. <s>{name}</s></li>
                                         <img src="images/check.png" onClick={() => cross_item(index)}/>
-                                        <img src="images/delete.jpg" onClick={() => delete_item(index)}/>
+                                        <img src="images/delete.png" onClick={() => delete_item(index)}/>
                                     </div>
                         }
                     } else if(showNotDone) {
